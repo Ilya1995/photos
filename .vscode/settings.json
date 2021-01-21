@@ -1,0 +1,8 @@
+{
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
+  "editor.defaultFormatter": "ms-vscode.vscode-typescript-tslint-plugin",
+}
