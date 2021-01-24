@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['../app.component.scss', './login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      email: new FormControl('', [
+      login: new FormControl('', [
         Validators.email,
         Validators.required,
       ]),

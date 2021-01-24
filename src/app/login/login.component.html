@@ -1,31 +1,35 @@
-<div class="container">
-  <div class="wrap-login">
+<div class="container-auth">
+  <div class="wrap-auth">
     <form class="card" [formGroup]="form" (ngSubmit)="submit()">
 
-      <span class="logo">
-        <i></i>
-      </span>
+      <div class="p-card">
+        <span class="logo">
+          <i data-icon="󰋵"></i>
+        </span>
 
-      <span class="title">Авторизация</span>
+        <span class="title">Авторизация</span>
 
-      <div class="input-block">
-        <input class="input" type="text" placeholder="Логин" formControlName="login" required="required">
-        <span class="focus-input" data-placeholder=""></span>
+        <div class="input-block">
+          <input class="input" type="text" placeholder="Логин" formControlName="login" required="required">
+          <span class="focus-input" data-placeholder="󰀄"></span>
+        </div>
+
+        <div class="input-block">
+          <input class="input" type="password" placeholder="Пароль" formControlName="password" required="required">
+          <span class="focus-input" data-placeholder="󰌾"></span>
+        </div>
+
+        <div class="control">
+          <button class="btn" type="submit" [disabled]="form.invalid || form.pending">Вход</button>
+        </div>
       </div>
 
-      <div class="input-block">
-        <input class="input" type="password" placeholder="Пароль" formControlName="password" required="required">
-        <span class="focus-input" data-placeholder=""></span>
-      </div>
-
-      <div class="control">
-        <button class="btn" type="submit" [disabled]="form.invalid || form.pending">Вход</button>
-      </div>
+      <hr />
 
       <div class="forgot">
-        <a>
-          Забыли пароль?
-        </a>
+        <a>Забыли пароль?</a>
+        <br />
+        <a>Регистрация</a>
       </div>
     </form>
   </div>

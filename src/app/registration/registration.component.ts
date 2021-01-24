@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms'
+import {Component, OnInit} from '@angular/core'
+import {FormControl, FormGroup, Validators} from '@angular/forms'
+import checkPasswords from 'src/validators/checkPasswords.directive'
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['../app.component.scss', './registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
 
@@ -16,46 +17,27 @@ export class RegistrationComponent implements OnInit {
         Validators.email,
         Validators.required,
       ]),
+      login: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.minLength(6)
+        Validators.minLength(8),
       ]),
-      address: new FormGroup({
-        country: new FormControl('by'),
-        city: new FormControl('Минск', Validators.required)
-      }),
-      skills: new FormArray([])
-    })
+      repeatPassword: new FormControl(null, []),
+    }, {validators: checkPasswords})
   }
 
   submit() {
     if (this.form.valid) {
       console.log('Form: ', this.form)
       const formData = {...this.form.value}
-
       console.log('Form Data:', formData)
-
       this.form.reset()
+    } else {
+      this.form.markAllAsTouched()
     }
-  }
-
-  setCapital() {
-    const cityMap = {
-      ru: 'Москва',
-      ua: 'Киев',
-      by: 'Минск'
-    }
-
-    const cityKey = this.form.get('address').get('country').value
-    const city = cityMap[cityKey]
-
-    this.form.patchValue({address: {city}})
-  }
-
-  addSkill() {
-    const control = new FormControl('', Validators.required);
-    // (<FormArray>this.form.get('skills'))
-    (this.form.get('skills') as FormArray).push(control)
   }
 
 }
