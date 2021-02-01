@@ -7,10 +7,11 @@ import {PhotosComponent} from './photos/photos.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http'
 import {LoginComponent} from './login/login.component'
-import {RegistrationComponent} from './registration/registration.component'
+import {RegistrationComponent} from './registration/registration.component';
+import { InfiniteScrollComponent } from './infinite-scroll/infinite-scroll.component'
 
 @NgModule({
-  declarations: [AppComponent, PhotosComponent, LoginComponent, RegistrationComponent],
+  declarations: [AppComponent, PhotosComponent, LoginComponent, RegistrationComponent, InfiniteScrollComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

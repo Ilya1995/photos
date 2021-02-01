@@ -23,22 +23,19 @@ export class PhotosService {
     })
   }
 
-  fetchPhotos(): Observable<Todo[]> {
-    const params = new HttpParams().set('client_id', '0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63')
+  fetchPhotos(page: number): Observable<Todo[]> {
+    let params = new HttpParams()
+    params = params.append('client_id', '0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63')
+    params = params.append('page', page.toString())
+    // const params = new HttpParams().set('client_id', '0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63')
     // params = params.append('_limit', '4')
-    // params = params.append('custom', 'anything')
+    // params = params.append('page', page)
 
     return this.http.get<Todo[]>('https://api.unsplash.com/photos', {
       // params: new HttpParams().set('Authorization', 'Client-ID 0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63')
       params
     })
-      // .pipe(
-      //   delay(500),
-      //   catchError(error => {
-      //     console.log('Error: ', error.message)
-      //     return throwError(error)
-      //   })
-      // )
+    .pipe(delay(page !== 1 ? 3000 : 0))
   }
 
   removeTodo(id: number): Observable<void> {
