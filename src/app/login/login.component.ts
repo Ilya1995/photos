@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,8 @@ import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms'
 export class LoginComponent implements OnInit {
 
   form: FormGroup
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -37,6 +40,8 @@ export class LoginComponent implements OnInit {
 
       this.form.reset()
     }
+
+    this.router.navigate(['/'])
   }
 
   setCapital() {
