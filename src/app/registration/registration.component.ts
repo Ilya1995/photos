@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import checkPasswords from 'src/validators/checkPasswords.directive'
+import {FirebaseService} from '../firebase.service'
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-registration',
@@ -8,8 +10,9 @@ import checkPasswords from 'src/validators/checkPasswords.directive'
   styleUrls: ['../app.component.scss', './registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-
   form: FormGroup
+
+  constructor(private router: Router, private firebaseService: FirebaseService) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -31,10 +34,11 @@ export class RegistrationComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      console.log('Form: ', this.form)
-      const formData = {...this.form.value}
-      console.log('Form Data:', formData)
-      this.form.reset()
+      const {repeatPassword, ...rest} = this.form.value
+      const user = {...rest, photoIds: []}
+      this.firebaseService.createUser(user)
+        .then(() => this.router.navigate(['/']))
+        .catch(console.log)
     } else {
       this.form.markAllAsTouched()
     }
