@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
 import {PhotosService} from '../photos.service'
+import {FirebaseService} from '../firebase.service'
 
 @Component({
   selector: 'app-photos',
@@ -14,9 +15,13 @@ export class PhotosComponent implements OnInit {
   photos = []
   likePhotoIds = []
 
-  constructor(private photosService: PhotosService) {}
+  constructor(private photosService: PhotosService, private firebaseService: FirebaseService) {}
 
   ngOnInit() {
+    this.firebaseService.getUsers()
+    .subscribe(result => {
+      console.log(result)
+    })
     this.getPhotos()
   }
 
