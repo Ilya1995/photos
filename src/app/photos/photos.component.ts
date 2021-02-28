@@ -12,6 +12,7 @@ export class PhotosComponent implements OnInit {
   page = 0
   style = {color: 'red'}
   photos = []
+  likePhotoIds = []
 
   constructor(private photosService: PhotosService) {}
 
@@ -38,9 +39,11 @@ export class PhotosComponent implements OnInit {
     // this.title = event.target.value
   }
 
-  onClick() {
-    this.style.color = 'green'
-    this.ref.nativeElement.focus()
-    console.log('onClick')
+  onClick(id) {
+    if (this.likePhotoIds.includes(id)) {
+      this.likePhotoIds = this.likePhotoIds.filter((photoId) => photoId !== id)
+    } else {
+      this.likePhotoIds.push(id)
+    }
   }
 }

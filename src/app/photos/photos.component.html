@@ -3,27 +3,14 @@
     <a routerLink="login">Выход</a>
   </div>
 
-  <!-- <p>app works!</p>
-  <p *ngIf="true; else ff" [ngStyle]="style">1{{title}}</p>
-  <ng-template #ff>
-    <p [ngStyle]="style">2{{title}}</p>
-  </ng-template>
-  <input type="text" [(ngModel)]="title" (input)="onInput($event)" #ref />
-  <button (click)="onClick()" >click</button>
-  <app-photos></app-photos> -->
   <ms-infinite-scroll (scrolled)="getPhotos()" class="infinite-scroll-with-root">
-    <!-- <div>
-      <p *ngFor="let contentItem of content">
-        {{ contentItem }}
-      </p>
-    </div> -->
     <div *ngIf="photos.length" class="photos">
-      <img *ngFor="let photo of photos" [src]="photo.urls.small">
+      <div *ngFor="let photo of photos">
+        <div class="photo" [class]="likePhotoIds.includes(photo.id) ? 'like' : ''">
+          <img [src]="photo.urls.small">
+          <i (click)="onClick(photo.id)"></i>
+        </div>
+      </div>
     </div> 
   </ms-infinite-scroll>
-  <!-- <div *ngIf="photos.length" class="photos">
-    <img *ngFor="let photo of photos" [src]="photo.urls.small">
-  </div>  -->
 </div>
-  <!-- <app-login></app-login> -->
-  <!-- <app-registration></app-registration> -->
