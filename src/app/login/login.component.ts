@@ -2,6 +2,11 @@ import {Component, OnInit} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {FirebaseService, User} from '../firebase.service'
 import {Router} from '@angular/router'
+import {select, Store} from '@ngrx/store'
+import {UserState} from '../reducers/user/user.reducer'
+import {Observable} from 'rxjs'
+import {selectIsAuth, selectUser} from '../reducers/user/user.selectors'
+import {SetUserAction} from '../reducers/user/user.actions'
 
 @Component({
   selector: 'app-login',
@@ -10,9 +15,12 @@ import {Router} from '@angular/router'
 })
 export class LoginComponent implements OnInit {
 
+  public user$: Observable<User> = this.store$.pipe(select(selectUser))
+  public isAuth$: Observable<boolean> = this.store$.pipe(select(selectIsAuth))
+
   form: FormGroup
 
-  constructor(private router: Router, private firebaseService: FirebaseService) {}
+  constructor(private router: Router, private firebaseService: FirebaseService, private store$: Store<UserState>) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -31,6 +39,7 @@ export class LoginComponent implements OnInit {
       this.firebaseService.getUser(this.form.value.login)
         .subscribe((result: [User]) => {
           if (result[0]?.password === this.form.value.password) {
+            // this.store$.dispatch(new SetUserAction())
             this.router.navigate(['/'])
           } else {
             console.log('неверный логин или пароль')
