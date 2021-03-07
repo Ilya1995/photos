@@ -2,11 +2,11 @@
   margin: auto 20px;
   
   .photos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    grid-auto-flow: dense;
-    grid-gap: 15px;
-    margin-top: 20px;
+    margin: 0 auto;
+
+    & > div {
+      margin-bottom: 20px;
+    }
 
     .photo { 
       background: #000;
@@ -77,6 +77,12 @@
         width: 100%;
         height: auto;
         display: block;
+      }
+
+      @media screen and (max-width: 400px) {
+        img {
+          width: 200px;
+        }
       }
     }
   }

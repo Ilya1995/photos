@@ -6,7 +6,7 @@ import {select, Store} from '@ngrx/store'
 import {UserState} from '../reducers/user/user.reducer'
 import {Observable} from 'rxjs'
 import {selectIsAuth, selectUser} from '../reducers/user/user.selectors'
-import {SetUserAction} from '../reducers/user/user.actions'
+import {LoginAction} from '../reducers/user/user.actions'
 
 @Component({
   selector: 'app-login',
@@ -37,9 +37,11 @@ export class LoginComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       this.firebaseService.getUser(this.form.value.login)
-        .subscribe((result: [User]) => {
-          if (result[0]?.password === this.form.value.password) {
-            // this.store$.dispatch(new SetUserAction())
+        .subscribe((result: any) => {
+          const user = {key: result.key, ...result.payload.val()}
+          if (user.password === this.form.value.password) {
+            this.store$.dispatch(new LoginAction({user}))
+            sessionStorage.setItem('user', JSON.stringify({login: user.login, password: user.password}))
             this.router.navigate(['/'])
           } else {
             console.log('неверный логин или пароль')

@@ -27,6 +27,7 @@ export class PhotosService {
     let params = new HttpParams()
     params = params.append('client_id', '0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63')
     params = params.append('page', page.toString())
+    params = params.append('per_page', '30')
     // const params = new HttpParams().set('client_id', '0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63')
     // params = params.append('_limit', '4')
     // params = params.append('page', page)
@@ -35,7 +36,7 @@ export class PhotosService {
       // params: new HttpParams().set('Authorization', 'Client-ID 0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63')
       params
     })
-    .pipe(delay(page !== 1 ? 3000 : 0))
+    // .pipe(delay(page !== 1 ? 3000 : 0))
   }
 
   removeTodo(id: number): Observable<void> {

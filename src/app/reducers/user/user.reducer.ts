@@ -16,7 +16,7 @@ const initialState: UserState = {
 export const userReducer = (state = initialState, action: UserActions) => {
   switch (action.type) {
     case userActionsType.setUser:
-      return {...state, user: action.payload.user}
+      return {...state, isAuth: true, user: action.payload.user}
     case userActionsType.updateIsAuth:
       return {...state, isAuth: action.payload.isAuth}
 
