@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {FirebaseService, User} from '../firebase.service'
+import {FirebaseService, User} from '../../firebase.service'
 import {Router} from '@angular/router'
 import {select, Store} from '@ngrx/store'
-import {UserState} from '../reducers/user/user.reducer'
+import {UserState} from '../../reducers/user/user.reducer'
 import {Observable} from 'rxjs'
-import {selectIsAuth, selectUser} from '../reducers/user/user.selectors'
-import {LoginAction} from '../reducers/user/user.actions'
+import {selectIsAuth, selectUser} from '../../reducers/user/user.selectors'
+import {LoginAction} from '../../reducers/user/user.actions'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../app.component.scss', './login.component.scss']
+  styleUrls: ['../../app.component.scss', './login.component.scss']
 })
 export class LoginComponent implements OnInit {
 

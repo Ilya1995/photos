@@ -1,0 +1,10 @@
+<div class="content">
+  <ngx-masonry *ngIf="(user$ | async)?.photoIds.length" class="photos" [options]="{gutter: 20, fitWidth: true}">
+    <div ngxMasonryItem *ngFor="let id of (user$ | async).photoIds" class="masonry-item">
+      <div class="photo" class="like">
+        <img [src]="('https://api.unsplash.com/photos/' + id | secure | async)?.urls.small">
+        <i (click)="onClick(id)"></i>
+      </div>
+    </div>
+  </ngx-masonry>
+</div>

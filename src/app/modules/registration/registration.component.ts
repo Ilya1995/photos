@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import checkPasswords from 'src/validators/checkPasswords.directive'
-import {FirebaseService} from '../firebase.service'
+import {FirebaseService} from '../../firebase.service'
 import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['../app.component.scss', './registration.component.scss']
+  styleUrls: ['../../app.component.scss', './registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
   form: FormGroup

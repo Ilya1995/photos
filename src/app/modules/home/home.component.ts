@@ -1,16 +1,17 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
-import {FirebaseService, User} from '../firebase.service'
+import {FirebaseService, User} from '../../firebase.service'
 import {select, Store} from '@ngrx/store'
-import {PhotosService} from '../photos.service'
-import {selectUser} from '../reducers/user/user.selectors'
-import {UserState} from '../reducers/user/user.reducer'
+import {PhotosService} from '../../photos.service'
+import {selectUser} from '../../reducers/user/user.selectors'
+import {UserState} from '../../reducers/user/user.reducer'
 import {Observable} from 'rxjs'
+
 @Component({
-  selector: 'app-photos',
-  templateUrl: './photos.component.html',
-  styleUrls: ['./photos.component.scss'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
-export class PhotosComponent implements OnInit {
+export class HomeComponent implements OnInit {
   @ViewChild('ref') ref: ElementRef
   public user$: Observable<User> = this.store$.pipe(select(selectUser))
 
@@ -31,7 +32,7 @@ export class PhotosComponent implements OnInit {
 
   getPhotos() {
     this.page = this.page + 1
-    console.log(this.page)
+    console.log(111, this.page)
     this.photosService.fetchPhotos(this.page)
       .subscribe(photos => {
         console.log(photos)
@@ -49,17 +50,18 @@ export class PhotosComponent implements OnInit {
   }
 
   onClick(id: string) {
-    const subscription = this.user$.subscribe((user) => {
-      if (!user?.key) return
+    const subscription = this.user$.subscribe(({key, photoIds = []}) => {
+      if (!key) return
 
-      let photoIds = []
+      let ids = []
+      console.log(photoIds)
 
-      if (user.photoIds?.includes(id)) {
-        photoIds = user.photoIds.filter((photoId) => photoId !== id)
+      if (photoIds?.includes(id)) {
+        ids = photoIds.filter((photoId) => photoId !== id)
       } else {
-        photoIds = [...user.photoIds, id]
+        ids = [...photoIds, id]
       }
-      this.firebaseService.addPhotoId(user.key, photoIds)
+      this.firebaseService.addPhotoId(key, ids)
     })
 
     subscription.unsubscribe()

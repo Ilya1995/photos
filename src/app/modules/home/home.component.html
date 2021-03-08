@@ -1,8 +1,4 @@
 <div class="content">
-  <div style="background-color: #a7b4b4; height: 100px; display: flex; justify-content: flex-end; align-items: center; padding-right: 20px; margin-bottom: 20px;">
-    <a routerLink="login">Выход</a>
-  </div>
-
   <ms-infinite-scroll (scrolled)="getPhotos()" class="infinite-scroll-with-root">
       <ngx-masonry *ngIf="photos.length" class="photos" [options]="{gutter: 20, fitWidth: true}">
         <div ngxMasonryItem *ngFor="let photo of photos" class="masonry-item">

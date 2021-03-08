@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core'
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http'
-import {Observable, throwError} from 'rxjs'
-import {catchError, delay} from 'rxjs/operators'
+import {HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpParams, HttpRequest} from '@angular/common/http'
+import {Observable} from 'rxjs'
 
 export interface Todo {
   completed: boolean
   title: string
   id?: number
 }
+
+const clientId = 'Client-ID 0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63'
 
 @Injectable({providedIn: 'root'})
 export class PhotosService {
@@ -25,18 +26,14 @@ export class PhotosService {
 
   fetchPhotos(page: number): Observable<Todo[]> {
     let params = new HttpParams()
-    params = params.append('client_id', '0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63')
     params = params.append('page', page.toString())
     params = params.append('per_page', '30')
-    // const params = new HttpParams().set('client_id', '0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63')
-    // params = params.append('_limit', '4')
-    // params = params.append('page', page)
 
-    return this.http.get<Todo[]>('https://api.unsplash.com/photos', {
-      // params: new HttpParams().set('Authorization', 'Client-ID 0bd7304d669c2a900ff77e181962efac03911ab095bbb9ed817a92323ea30d63')
-      params
-    })
-    // .pipe(delay(page !== 1 ? 3000 : 0))
+    return this.http.get<Todo[]>('https://api.unsplash.com/photos', {params})
+  }
+
+  getPhoto(id: string): Observable<Todo[]> {
+    return this.http.get<Todo[]>(`https://api.unsplash.com/photos/${id}`)
   }
 
   removeTodo(id: number): Observable<void> {
@@ -47,5 +44,16 @@ export class PhotosService {
     return this.http.put<Todo>(`https://jsonplaceholder.typicode.com/todos/${id}`, {
       completed: true
     })
+  }
+}
+
+export class PhotoInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    const cloned = req.clone({
+      headers: req.headers.append('Authorization', clientId)
+    })
+
+    return next.handle(cloned)
   }
 }
