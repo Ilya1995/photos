@@ -9,7 +9,7 @@ import {Observable} from 'rxjs'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrls: ['./home.component.scss', '../../app.component.scss'],
 })
 export class HomeComponent implements OnInit {
   @ViewChild('ref') ref: ElementRef
@@ -49,19 +49,19 @@ export class HomeComponent implements OnInit {
     // this.title = event.target.value
   }
 
-  onClick(id: string) {
-    const subscription = this.user$.subscribe(({key, photoIds = []}) => {
+  onClick(url: string) {
+    const subscription = this.user$.subscribe(({key, photoUrls = []}) => {
       if (!key) return
 
-      let ids = []
-      console.log(photoIds)
+      let urls = []
+      console.log(photoUrls)
 
-      if (photoIds?.includes(id)) {
-        ids = photoIds.filter((photoId) => photoId !== id)
+      if (photoUrls?.includes(url)) {
+        urls = photoUrls.filter((photoUrl) => photoUrl !== url)
       } else {
-        ids = [...photoIds, id]
+        urls = [...photoUrls, url]
       }
-      this.firebaseService.addPhotoId(key, ids)
+      this.firebaseService.addPhotoUrl(key, urls)
     })
 
     subscription.unsubscribe()

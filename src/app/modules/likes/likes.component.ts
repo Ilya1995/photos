@@ -9,7 +9,7 @@ import {Observable} from 'rxjs'
 @Component({
   selector: 'app-likes',
   templateUrl: './likes.component.html',
-  styleUrls: ['./likes.component.scss']
+  styleUrls: ['./likes.component.scss', '../../app.component.scss']
 })
 export class LikesComponent implements OnInit {
   public user$: Observable<User> = this.store$.pipe(select(selectUser))
@@ -45,14 +45,14 @@ export class LikesComponent implements OnInit {
     // const subscription = this.user$.subscribe((user) => {
     //   if (!user?.key) return
 
-    //   let photoIds = []
+    //   let photoUrls = []
 
-    //   if (user.photoIds?.includes(id)) {
-    //     photoIds = user.photoIds.filter((photoId) => photoId !== id)
+    //   if (user.photoUrls?.includes(id)) {
+    //     photoUrls = user.photoUrls.filter((photoId) => photoId !== id)
     //   } else {
-    //     photoIds = [...user.photoIds, id]
+    //     photoUrls = [...user.photoUrls, id]
     //   }
-    //   this.firebaseService.addPhotoId(user.key, photoIds)
+    //   this.firebaseService.addPhotoId(user.key, photoUrls)
     // })
 
     // subscription.unsubscribe()

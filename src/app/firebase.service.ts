@@ -6,7 +6,7 @@ export interface User {
   login: string
   password: string
   key: string
-  photoIds: string[]
+  photoUrls: string[]
 }
 @Injectable({providedIn: 'root'})
 export class FirebaseService {
@@ -18,10 +18,10 @@ export class FirebaseService {
     return itemsRef.push(user)
   }
 
-  addPhotoId(userKey: string, photoIds: string[]) {
-    if (!userKey || !photoIds) return
+  addPhotoUrl(userKey: string, photoUrls: string[]) {
+    if (!userKey || !photoUrls) return
     const itemsRef = this.db.list('users')
-    itemsRef.update(userKey, {photoIds})
+    itemsRef.update(userKey, {photoUrls})
   }
 
   getUser(login) {

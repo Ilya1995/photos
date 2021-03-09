@@ -35,7 +35,7 @@ export class RegistrationComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       const {repeatPassword, ...rest} = this.form.value
-      const user = {...rest, photoIds: []}
+      const user = {...rest, photoUrls: []}
       this.firebaseService.createUser(user)
         .then(() => this.router.navigate(['/']))
         .catch(console.log)
