@@ -1,20 +1,18 @@
-<div
-  style="
-    background-color: #a7b4b4;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    margin-bottom: 20px;
-  "
->
-  <a routerLink="/"
-    ><img src="../assets/images/logo.png" style="height: 80px"
-  /></a>
+<div>
+  <h2>#ПинтирестНаМинималках</h2>
+  <div
+    *ngIf="fixed"
+    class="fill-empty"
+    [ngStyle]="{ height: emptyHeight + 'px' }"
+  ></div>
+  <div #sticky class="fixed-header" [ngClass]="{ fix: fixed }">
+    <a routerLink="/">
+      <img src="../assets/images/logo.png" style="height: 80px" />
+    </a>
 
-  <div>
-    <a routerLink="likes" style="margin-right: 20px">Понравившиеся</a>
-    <a routerLink="login">Выход</a>
+    <div>
+      <a routerLink="likes" style="margin-right: 20px">Понравившиеся</a>
+      <a routerLink="login">Выход</a>
+    </div>
   </div>
 </div>
