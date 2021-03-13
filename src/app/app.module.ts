@@ -13,6 +13,7 @@ import {reducers, metaReducers} from './reducers'
 import {StoreRouterConnectingModule} from '@ngrx/router-store'
 import {DefaultModule} from './layouts/default/default.module'
 import {FullsizeModule} from './layouts/fullsize/fullsize.module'
+import {ErrorPageComponent} from './modules/error-page/error-page.component'
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -21,7 +22,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ErrorPageComponent],
   imports: [
     BrowserModule,
     DefaultModule,

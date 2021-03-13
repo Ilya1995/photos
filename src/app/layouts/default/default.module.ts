@@ -1,11 +1,10 @@
-import { SecurePipe } from './../../shared/pipes/secure.pipe'
-import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { DefaultComponent } from './default.component'
-import { HomeComponent } from '../../modules/home/home.component'
-import { LikesComponent } from '../../modules/likes/likes.component'
-import { RouterModule } from '@angular/router'
-import { SharedModule } from '../../shared/shared.module'
+import {NgModule} from '@angular/core'
+import {CommonModule} from '@angular/common'
+import {DefaultComponent} from './default.component'
+import {HomeComponent} from '../../modules/home/home.component'
+import {LikesComponent} from '../../modules/likes/likes.component'
+import {RouterModule} from '@angular/router'
+import {SharedModule} from '../../shared/shared.module'
 import {NgxMasonryModule} from 'ngx-masonry'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
@@ -14,7 +13,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     DefaultComponent,
     HomeComponent,
     LikesComponent,
-    SecurePipe,
   ],
   imports: [
     CommonModule,
@@ -24,4 +22,4 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     NgxMasonryModule,
   ]
 })
-export class DefaultModule { }
+export class DefaultModule {}

@@ -1,4 +1,9 @@
 import {Component, AfterViewInit, OnDestroy, ViewChild} from '@angular/core'
+import {selectUser} from '../../../reducers/user/user.selectors'
+import {UserState} from '../../../reducers/user/user.reducer'
+import {User} from '../../../firebase.service'
+import {select, Store} from '@ngrx/store'
+import {Observable} from 'rxjs'
 
 @Component({
   selector: 'app-header',
@@ -8,11 +13,13 @@ import {Component, AfterViewInit, OnDestroy, ViewChild} from '@angular/core'
 export class HeaderComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('sticky') sticky
+  public user$: Observable<User> = this.store$.pipe(select(selectUser))
 
   fixed = false
   emptyHeight = 0
   neededScroll = 0
-  constructor() {}
+
+  constructor(private store$: Store<UserState>) {}
 
   ngAfterViewInit() {
     this.emptyHeight = this.sticky.nativeElement.offsetHeight

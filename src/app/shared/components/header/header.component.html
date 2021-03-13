@@ -1,18 +1,24 @@
-<div>
-  <h2>#ПинтирестНаМинималках</h2>
+<div [ngClass]="{ fix: fixed }">
+  <h2 class="title-black">#ПинтирестНаМинималках</h2>
   <div
     *ngIf="fixed"
     class="fill-empty"
     [ngStyle]="{ height: emptyHeight + 'px' }"
   ></div>
-  <div #sticky class="fixed-header" [ngClass]="{ fix: fixed }">
+  <div #sticky class="fixed-header">
     <a routerLink="/">
       <img src="../assets/images/logo.png" style="height: 80px" />
     </a>
 
-    <div>
-      <a routerLink="likes" style="margin-right: 20px">Понравившиеся</a>
-      <a routerLink="login">Выход</a>
+    <h2 class="title-white">#ПинтирестНаМинималках</h2>
+
+    <div style="display: flex">
+      <a routerLink="likes" class="icon like" data-icon="󰣐">
+        <span *ngIf="(user$ | async)?.photoUrls?.length" class="cout-likes">
+          {{ (user$ | async)?.photoUrls?.length }}
+        </span>
+      </a>
+      <a routerLink="/login" class="icon" data-icon="󰈆"></a>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 .container-auth {
   &::before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     z-index: -1;
@@ -8,7 +8,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(255,255,255,.9);
+    background-color: rgba(255, 255, 255, 0.9);
   }
   width: 100%;
   min-height: 100vh;
@@ -21,14 +21,14 @@
   background-size: cover;
   position: relative;
   z-index: 1;
-  background-image: url('../assets/images/bg-01.jpg');
+  background-image: url("../assets/images/bg-01.jpg");
 
   .wrap-auth {
     width: 500px;
     border-radius: 10px;
     padding-top: 55px;
     padding-bottom: 37px;
-    background: -webkit-linear-gradient(top,#7579ff,#b224ef);
+    background: -webkit-linear-gradient(top, #7579ff, #b224ef);
 
     form {
       width: 100%;
@@ -37,7 +37,7 @@
         padding-left: 55px;
         padding-right: 55px;
       }
-      
+
       .logo {
         display: flex;
         justify-content: center;
@@ -49,7 +49,7 @@
         margin: 0 auto;
         i::before {
           content: attr(data-icon);
-          font: normal normal normal 14px/1 'Material-Design';
+          font: normal normal normal 14px/1 "Material-Design";
           font-size: 60px;
           color: #333;
         }
@@ -68,7 +68,7 @@
       .input-block {
         width: 100%;
         position: relative;
-        border-bottom: 2px solid rgba(255,255,255,.24);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.24);
         margin-bottom: 30px;
 
         .input {
@@ -99,7 +99,7 @@
           top: 0;
           left: 0;
           pointer-events: none;
-          
+
           &::before {
             content: "";
             display: block;
@@ -108,12 +108,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            transition: all .4s;
+            transition: all 0.4s;
             background: #fff;
           }
 
           &::after {
-            font-family: 'Material-Design';
+            font-family: "Material-Design";
             content: attr(data-placeholder);
             font-size: 22px;
             color: #fff;
@@ -123,7 +123,7 @@
             top: 6px;
             left: 0;
             padding-left: 5px;
-            transition: all .4s;
+            transition: all 0.4s;
           }
         }
 
@@ -156,10 +156,10 @@
           min-width: 120px;
           height: 50px;
           border-radius: 25px;
-          background: -webkit-linear-gradient(bottom,#7579ff,#b224ef);
+          background: -webkit-linear-gradient(bottom, #7579ff, #b224ef);
           position: relative;
           z-index: 1;
-          transition: all .4s;
+          transition: all 0.4s;
 
           &::before {
             content: "";
@@ -192,7 +192,6 @@
         background: rgba(255, 255, 255, 0.24);
         margin-top: 40px;
       }
-
     }
   }
 
@@ -206,7 +205,8 @@
 
 .content {
   margin: auto 20px;
-  
+  margin-top: 20px;
+
   .photos {
     margin: 0 auto;
 
@@ -214,7 +214,7 @@
       margin-bottom: 20px;
     }
 
-    .photo { 
+    .photo {
       background: #000;
       overflow: hidden;
       position: relative;
@@ -222,13 +222,13 @@
       justify-content: center;
       align-items: center;
 
-      transition: .2s;
+      transition: 0.2s;
       animation: fadein 0.5s;
       border-radius: 4px;
-      box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 
       &:hover {
-        box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
       }
 
       &:hover i {
@@ -247,14 +247,14 @@
         top: 50%;
         transform: translateX(-50%) translateY(-50%);
 
-        transition: .2s;
+        transition: 0.2s;
         animation: fadein 0.5s;
         opacity: 0;
         visibility: hidden;
 
         height: 70px;
         width: 70px;
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgba(0, 0, 0, 0.4);
         border-radius: 35px;
 
         display: flex;
@@ -265,18 +265,18 @@
           cursor: pointer;
         }
         &::before {
-          content: '󰋕';
-          font: normal normal normal 14px/1 'Material-Design';
+          content: "󰋕";
+          font: normal normal normal 14px/1 "Material-Design";
           font-size: 40px;
           color: #fff;
         }
       }
 
       &.like i::before {
-        content: '󰋑';
+        content: "󰋑";
         color: #b224ef;
       }
-    
+
       img {
         opacity: 1;
         transition: opacity 124ms linear, transform 124ms linear;
@@ -295,6 +295,10 @@
 }
 
 @keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
