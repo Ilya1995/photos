@@ -1,7 +1,7 @@
 import {Component, AfterViewInit, OnDestroy, ViewChild} from '@angular/core'
 import {selectUser} from '../../../reducers/user/user.selectors'
 import {UserState} from '../../../reducers/user/user.reducer'
-import {User} from '../../../firebase.service'
+import {User} from '../../../services/firebase.service'
 import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
 
@@ -23,7 +23,8 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.emptyHeight = this.sticky.nativeElement.offsetHeight
-    this.neededScroll = this.sticky.nativeElement.offsetTop - (100 - this.sticky.nativeElement.offsetHeight) / 2
+    // this.neededScroll = this.sticky.nativeElement.offsetTop - (100 - this.sticky.nativeElement.offsetHeight) / 2
+    this.neededScroll = 34
     window.addEventListener('scroll', this.handleScroll)
   }
 

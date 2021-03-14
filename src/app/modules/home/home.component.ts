@@ -1,7 +1,7 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
-import {FirebaseService, User} from '../../firebase.service'
+import {Component, OnInit} from '@angular/core'
+import {FirebaseService, User} from '../../services/firebase.service'
 import {select, Store} from '@ngrx/store'
-import {PhotosService} from '../../photos.service'
+import {PhotosService} from '../../services/photos.service'
 import {selectUser} from '../../reducers/user/user.selectors'
 import {UserState} from '../../reducers/user/user.reducer'
 import {Observable} from 'rxjs'
@@ -12,12 +12,9 @@ import {Observable} from 'rxjs'
   styleUrls: ['./home.component.scss', '../../app.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('ref') ref: ElementRef
   public user$: Observable<User> = this.store$.pipe(select(selectUser))
 
-  title = 'photos'
   page = 0
-  style = {color: 'red'}
   photos = []
 
   constructor(
@@ -31,22 +28,12 @@ export class HomeComponent implements OnInit {
   }
 
   getPhotos() {
+    if (this.page === 1 && !this.photos.length) return
     this.page = this.page + 1
-    console.log(111, this.page)
     this.photosService.fetchPhotos(this.page)
       .subscribe(photos => {
-        console.log(photos)
-        // setTimeout(() => {
         this.photos = [...this.photos, ...photos]
-        // }, 2000)
-      }, error => {
-        console.log(error)
-      })
-  }
-
-  onInput(event: HTMLInputElement) {
-    // console.log(event.target.value)
-    // this.title = event.target.value
+      }, console.log)
   }
 
   onClick(url: string) {

@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store'
-import { User } from 'src/app/firebase.service'
+import {User} from 'src/app/services/firebase.service'
 import {userNode, UserState} from './user.reducer'
 
 const selectUserFeature = createFeatureSelector<UserState>(userNode)

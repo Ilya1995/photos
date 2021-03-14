@@ -32,6 +32,50 @@
 
     form {
       width: 100%;
+      animation: fadein 0.5s;
+
+      .alert-validate {
+        &::after {
+          content: "\F1238";
+          position: absolute;
+          font: normal normal normal 14px/1 "Material-Design";
+          font-size: 20px;
+          top: 50%;
+          right: 5px;
+          color: #c80000;
+          transform: translateY(-50%);
+        }
+
+        .validation {
+          max-width: 70%;
+          background-color: #fff;
+          border: 1px solid #c80000;
+          border-radius: 2px;
+          padding: 4px 25px 4px 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 0px;
+          pointer-events: none;
+          color: #c80000;
+          font-size: 13px;
+          line-height: 1.4;
+          text-align: left;
+          visibility: hidden;
+          opacity: 0;
+          transition: opacity 0.4s;
+        }
+
+        &:hover .validation {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      .validation {
+        position: absolute;
+        visibility: hidden;
+        opacity: 0;
+      }
 
       .p-card {
         padding-left: 55px;

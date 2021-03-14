@@ -1,4 +1,4 @@
-import {User} from './../../firebase.service'
+import {User} from '../../services/firebase.service'
 import {Action} from '@ngrx/store'
 
 export enum userActionsType {

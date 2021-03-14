@@ -23,6 +23,7 @@
     "@ngrx/router-store": "^11.0.1",
     "@ngrx/store": "^11.0.1",
     "@ngrx/store-devtools": "^11.0.1",
+    "angular2-toaster": "^11.0.1",
     "firebase": "^8.2.9",
     "intersection-observer": "^0.12.0",
     "masonry-layout": "^4.2.2",

@@ -26,7 +26,7 @@ export class FirebaseService {
 
   getUser(login) {
     if (!login) return
-    return this.db.list('users', ref => ref.orderByChild('login').equalTo(login)).stateChanges()
+    return this.db.list('users', ref => ref.orderByChild('login').equalTo(login)).snapshotChanges()
   }
 
 }

@@ -1,7 +1,6 @@
 <div class="container-auth">
   <div class="wrap-auth">
     <form class="card" [formGroup]="form" (ngSubmit)="submit()">
-
       <div class="p-card">
         <span class="logo">
           <i data-icon="󰋵"></i>
@@ -9,18 +8,52 @@
 
         <span class="title">Авторизация</span>
 
-        <div class="input-block">
-          <input class="input" type="text" placeholder="Логин" formControlName="login" required="required">
+        <div
+          class="input-block"
+          [ngClass]="{
+            'alert-validate': form.get('login').invalid && isSubmit
+          }"
+        >
+          <input
+            class="input"
+            type="text"
+            placeholder="Логин"
+            formControlName="login"
+            required="required"
+          />
           <span class="focus-input" data-placeholder="󰀄"></span>
+          <div class="validation">
+            <small *ngIf="form.get('login').errors?.required">
+              Поле Логин не может быть пустым
+            </small>
+          </div>
         </div>
 
-        <div class="input-block">
-          <input class="input" type="password" placeholder="Пароль" formControlName="password" required="required">
+        <div
+          class="input-block"
+          [ngClass]="{
+            'alert-validate': form.get('password').invalid && isSubmit
+          }"
+        >
+          <input
+            class="input"
+            type="password"
+            placeholder="Пароль"
+            formControlName="password"
+            required="required"
+          />
           <span class="focus-input" data-placeholder="󰌾"></span>
+          <div class="validation">
+            <small *ngIf="form.get('password').errors?.required">
+              Поле Пароль не может быть пустым
+            </small>
+          </div>
         </div>
 
         <div class="control">
-          <button class="btn" type="submit" [disabled]="form.pending">Вход</button>
+          <button class="btn" type="submit" [disabled]="form.pending">
+            Вход
+          </button>
         </div>
       </div>
 
@@ -34,6 +67,3 @@
     </form>
   </div>
 </div>
-
-
-

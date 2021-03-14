@@ -3,7 +3,7 @@ import {selectIsAuth} from '../../reducers/user/user.selectors'
 import {UserState} from '../../reducers/user/user.reducer'
 import {Injectable} from '@angular/core'
 import {select, Store} from '@ngrx/store'
-import {tap} from 'rxjs/operators'
+import {map} from 'rxjs/operators'
 import {Observable} from 'rxjs'
 
 @Injectable({providedIn: 'root'})
@@ -14,8 +14,10 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.store$.pipe(
       select(selectIsAuth),
-      tap((isAuth) => {
-        if (!isAuth) this.router.navigate(['/login'])
+      map((isAuth) => {
+        const user = sessionStorage.getItem('user')
+        if (user || isAuth) return true
+        this.router.navigate(['/login'])
       }))
   }
 }

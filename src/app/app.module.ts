@@ -1,4 +1,4 @@
-import {PhotoInterceptor} from './photos.service'
+import {PhotoInterceptor} from './services/photos.service'
 import {BrowserModule} from '@angular/platform-browser'
 import {NgModule, Provider} from '@angular/core'
 import {AppRoutingModule} from './app-routing.module'
@@ -6,6 +6,8 @@ import {AppComponent} from './app.component'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {AngularFireModule} from '@angular/fire'
 import {AngularFirestoreModule} from '@angular/fire/firestore'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {ToasterModule} from 'angular2-toaster'
 import {StoreModule} from '@ngrx/store'
 import {StoreDevtoolsModule} from '@ngrx/store-devtools'
 import {environment} from '../environments/environment'
@@ -28,6 +30,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     DefaultModule,
     FullsizeModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    ToasterModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

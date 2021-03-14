@@ -1,4 +1,4 @@
-import {User} from './../../firebase.service'
+import {User} from '../../services/firebase.service'
 import {UserActions, userActionsType} from './user.actions'
 
 export const userNode = 'user'

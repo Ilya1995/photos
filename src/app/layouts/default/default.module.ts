@@ -6,7 +6,6 @@ import {LikesComponent} from '../../modules/likes/likes.component'
 import {RouterModule} from '@angular/router'
 import {SharedModule} from '../../shared/shared.module'
 import {NgxMasonryModule} from 'ngx-masonry'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     CommonModule,
     RouterModule,
     SharedModule,
-    BrowserAnimationsModule,
     NgxMasonryModule,
   ]
 })

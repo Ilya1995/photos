@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import checkPasswords from 'src/validators/checkPasswords.directive'
-import {FirebaseService} from '../../firebase.service'
+import {FirebaseService} from '../../services/firebase.service'
 import {Router} from '@angular/router'
 
 @Component({

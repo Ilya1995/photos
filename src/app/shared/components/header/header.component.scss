@@ -20,6 +20,7 @@
 
 .fixed-header {
   background: -webkit-linear-gradient(top, #8386ec, #b44de0);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   height: 100px;
   display: flex;
   justify-content: space-between;
@@ -81,6 +82,15 @@
     border-radius: 10px;
     justify-content: center;
   }
+}
+
+.logo {
+  background-image: url("../../../../assets/images/logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 80px;
+  width: 80px;
 }
 
 .like {
