@@ -27,7 +27,7 @@ export class PhotosService {
   fetchPhotos(page: number): Observable<Todo[]> {
     let params = new HttpParams()
     params = params.append('page', page.toString())
-    params = params.append('per_page', '30')
+    params = params.append('per_page', '20')
 
     return this.http.get<Todo[]>('https://api.unsplash.com/photos', {params})
   }

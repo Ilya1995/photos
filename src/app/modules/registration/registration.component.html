@@ -8,8 +8,20 @@
 
         <span class="title">Регистрация</span>
 
-        <div class="input-block" [ngClass]="{'alert-validate': form.get('email').invalid && form.get('email').touched}">
-          <input class="input" type="text" placeholder="E-mail" formControlName="email" required="required">
+        <div
+          class="input-block"
+          [ngClass]="{
+            'alert-validate':
+              form.get('email').invalid && form.get('email').touched
+          }"
+        >
+          <input
+            class="input"
+            type="text"
+            placeholder="E-mail"
+            formControlName="email"
+            required="required"
+          />
           <span class="focus-input" data-placeholder="󰇮"></span>
           <div class="validation">
             <small *ngIf="form.get('email').errors?.required">
@@ -22,8 +34,20 @@
           </div>
         </div>
 
-        <div class="input-block" [ngClass]="{'alert-validate': form.get('login').invalid && form.get('login').touched}">
-          <input class="input" type="text" placeholder="Логин" formControlName="login" required="required">
+        <div
+          class="input-block"
+          [ngClass]="{
+            'alert-validate':
+              form.get('login').invalid && form.get('login').touched
+          }"
+        >
+          <input
+            class="input"
+            type="text"
+            placeholder="Логин"
+            formControlName="login"
+            required="required"
+          />
           <span class="focus-input" data-placeholder="󰀄"></span>
           <div class="validation">
             <small *ngIf="form.get('login').errors?.required">
@@ -31,17 +55,30 @@
             </small>
 
             <small *ngIf="form.get('login').errors?.minlength">
-              Длинна должна быть не менее {{form.get('login').errors.minlength.requiredLength}} символов
+              Длинна должна быть не менее
+              {{ form.get("login").errors.minlength.requiredLength }} символов
             </small>
 
-            <!-- <small *ngIf="form.get('login').errors.uniqLogin">
-              Логин {{form.get('login').value}} занят
-            </small> -->
+            <small *ngIf="form.get('login').errors?.uniqLogin">
+              Логин {{ form.get("login").value }} занят
+            </small>
           </div>
         </div>
 
-        <div class="input-block" [ngClass]="{'alert-validate': form.get('password').invalid && form.get('password').touched}">
-          <input class="input" type="password" placeholder="Пароль" formControlName="password" required="required">
+        <div
+          class="input-block"
+          [ngClass]="{
+            'alert-validate':
+              form.get('password').invalid && form.get('password').touched
+          }"
+        >
+          <input
+            class="input"
+            type="password"
+            placeholder="Пароль"
+            formControlName="password"
+            required="required"
+          />
           <span class="focus-input" data-placeholder="󰌾"></span>
           <div class="validation">
             <small *ngIf="form.get('password').errors?.required">
@@ -49,13 +86,27 @@
             </small>
 
             <small *ngIf="form.get('password').errors?.minlength">
-              Длинна должна быть не менее {{form.get('password').errors.minlength.requiredLength}} символов
+              Длинна должна быть не менее
+              {{ form.get("password").errors.minlength.requiredLength }}
+              символов
             </small>
           </div>
         </div>
 
-        <div class="input-block" [ngClass]="{'alert-validate': form.errors?.repeatPassword && form.get('repeatPassword').touched}">
-          <input class="input" type="password" placeholder="Повторите пароль" formControlName="repeatPassword" required="required">
+        <div
+          class="input-block"
+          [ngClass]="{
+            'alert-validate':
+              form.errors?.repeatPassword && form.get('repeatPassword').touched
+          }"
+        >
+          <input
+            class="input"
+            type="password"
+            placeholder="Повторите пароль"
+            formControlName="repeatPassword"
+            required="required"
+          />
           <span class="focus-input" data-placeholder="󰌾"></span>
           <div class="validation">
             <small *ngIf="form.errors?.repeatPassword">
@@ -75,7 +126,6 @@
         <small>Есть аккаунт?</small>
         <a routerLink="/login">Вход</a>
       </div>
-
     </form>
   </div>
 </div>

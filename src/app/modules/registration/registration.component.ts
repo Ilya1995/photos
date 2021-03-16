@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
-import checkPasswords from 'src/validators/checkPasswords.directive'
+import {MyValidators} from './../../services/validators.service'
 import {FirebaseService} from '../../services/firebase.service'
 import {Router} from '@angular/router'
+import {UserState} from 'src/app/reducers/user/user.reducer'
+import {Store} from '@ngrx/store'
+import {LoginAction} from 'src/app/reducers/user/user.actions'
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +15,12 @@ import {Router} from '@angular/router'
 export class RegistrationComponent implements OnInit {
   form: FormGroup
 
-  constructor(private router: Router, private firebaseService: FirebaseService) {}
+  constructor(
+    private router: Router,
+    private firebaseService: FirebaseService,
+    private validators: MyValidators,
+    private store$: Store<UserState>
+  ) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -23,21 +31,31 @@ export class RegistrationComponent implements OnInit {
       login: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
-      ]),
+      ], this.validators.uniqLogin),
       password: new FormControl(null, [
         Validators.required,
         Validators.minLength(8),
       ]),
       repeatPassword: new FormControl(null, []),
-    }, {validators: checkPasswords})
+    }, {validators: this.validators.checkPasswords})
   }
 
   submit() {
-    if (this.form.valid) {
+    if (!this.form.invalid) {
+
       const {repeatPassword, ...rest} = this.form.value
-      const user = {...rest, photoUrls: []}
-      this.firebaseService.createUser(user)
-        .then(() => this.router.navigate(['/']))
+      const data = {...rest, photoUrls: []}
+
+      this.firebaseService.createUser(data)
+        .then(() => {
+          this.firebaseService.getUser(data.login)
+            .subscribe((result: any) => {
+              const user = {key: result[0].key, ...result[0].payload.val()}
+              this.store$.dispatch(new LoginAction({user}))
+              sessionStorage.setItem('user', JSON.stringify({login: user.login, password: user.password}))
+              this.router.navigate(['/'])
+            })
+        })
         .catch(console.log)
     } else {
       this.form.markAllAsTouched()

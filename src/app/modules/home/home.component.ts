@@ -41,14 +41,13 @@ export class HomeComponent implements OnInit {
       if (!key) return
 
       let urls = []
-      console.log(photoUrls)
 
       if (photoUrls?.includes(url)) {
         urls = photoUrls.filter((photoUrl) => photoUrl !== url)
       } else {
         urls = [...photoUrls, url]
       }
-      this.firebaseService.addPhotoUrl(key, urls)
+      this.firebaseService.updatePhotoUrls(key, urls)
     })
 
     subscription.unsubscribe()

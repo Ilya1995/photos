@@ -1,5 +1,5 @@
 import {Component} from '@angular/core'
-import {User} from '../../services/firebase.service'
+import {FirebaseService, User} from '../../services/firebase.service'
 import {select, Store} from '@ngrx/store'
 import {selectUser} from '../../reducers/user/user.selectors'
 import {UserState} from '../../reducers/user/user.reducer'
@@ -13,10 +13,17 @@ import {Observable} from 'rxjs'
 export class LikesComponent {
   public user$: Observable<User> = this.store$.pipe(select(selectUser))
 
-  constructor(private store$: Store<UserState>) {}
+  constructor(private store$: Store<UserState>, private firebaseService: FirebaseService) {}
 
-  onClick(id: string) {
-    console.log(888, id)
+  onClick(url: string) {
+    const subscription = this.user$.subscribe(({key, photoUrls = []}) => {
+      if (!key) return
+
+      const urls = photoUrls.filter((photoUrl) => photoUrl !== url)
+      this.firebaseService.updatePhotoUrls(key, urls)
+    })
+
+    subscription.unsubscribe()
   }
 
 }

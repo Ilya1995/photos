@@ -18,8 +18,9 @@ export class FirebaseService {
     return itemsRef.push(user)
   }
 
-  addPhotoUrl(userKey: string, photoUrls: string[]) {
+  updatePhotoUrls(userKey: string, photoUrls: string[]) {
     if (!userKey || !photoUrls) return
+
     const itemsRef = this.db.list('users')
     itemsRef.update(userKey, {photoUrls})
   }
